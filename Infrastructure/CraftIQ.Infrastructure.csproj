@@ -21,7 +21,8 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\Application\Application.csproj" />
+    <ProjectReference Include="..\Application\CraftIQ.Application.csproj" />
+    <ProjectReference Include="..\Domain\CraftIQ.Domain.csproj" />
   </ItemGroup>
 
 </Project>
