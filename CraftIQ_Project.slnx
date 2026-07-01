@@ -1,0 +1,6 @@
+<Solution>
+  <Project Path="Application/CraftIQ_Project.Application.csproj" />
+  <Project Path="Domain/CraftIQ_Project.Domain.csproj" />
+  <Project Path="Infrastructure/CraftIQ_Project.Infrastructure.csproj" />
+  <Project Path="temp_For_CleanArch.API/CraftIQ_Project.API.csproj" />
+</Solution>
