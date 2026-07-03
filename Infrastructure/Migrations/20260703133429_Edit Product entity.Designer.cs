@@ -4,6 +4,7 @@ using Infrastructure.Presistance.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace CraftIQ.Infrastructure.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    partial class AppDbContextModelSnapshot : ModelSnapshot
+    [Migration("20260703133429_Edit Product entity")]
+    partial class EditProductentity
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -222,8 +225,8 @@ namespace CraftIQ.Infrastructure.Migrations
                     b.Property<float>("Height")
                         .HasColumnType("real");
 
-                    b.Property<int>("InventoryId")
-                        .HasColumnType("int");
+                    b.Property<Guid>("InventoryId")
+                        .HasColumnType("uniqueidentifier");
 
                     b.Property<float>("Length")
                         .HasColumnType("real");
@@ -263,13 +266,16 @@ namespace CraftIQ.Infrastructure.Migrations
                     b.Property<float>("Width")
                         .HasColumnType("real");
 
+                    b.Property<int>("inventoryID")
+                        .HasColumnType("int");
+
                     b.HasKey("ID");
 
                     b.HasIndex("CategoryId");
 
-                    b.HasIndex("InventoryId");
-
                     b.HasIndex("TransactionId");
+
+                    b.HasIndex("inventoryID");
 
                     b.ToTable("products");
                 });
@@ -345,15 +351,15 @@ namespace CraftIQ.Infrastructure.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("CraftIQ.Domain.Entites.Inventory", "inventory")
-                        .WithMany("Products")
-                        .HasForeignKey("InventoryId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
                     b.HasOne("CraftIQ.Domain.Entites.Transaction", "Transaction")
                         .WithMany("products")
                         .HasForeignKey("TransactionId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("CraftIQ.Domain.Entites.Inventory", "inventory")
+                        .WithMany("Products")
+                        .HasForeignKey("inventoryID")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 

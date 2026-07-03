@@ -19,15 +19,18 @@ namespace CraftIQ.Domain.Entites
         public decimal ProductionCost { get; set; }
         public int CategoryId { get; set; }
         [ForeignKey("CategoryId")]
-        public Category category { get; set; }=new();
+        public Category category { get; set; }
 
         public int InventoryId { get; set; }
-        public Inventory inventory { get; set; } = new();
+        // C#
+        [ForeignKey("InventoryId")]
+        public Inventory inventory { get; set; }
+       
 
         public int TransactionId { get; set; }
-        public Transaction Transaction { get; set; } = new();
+        public Transaction Transaction { get; set; }
 
-        public List<OrderDetail> orderDetails { get; set; } = new();
+        public List<OrderDetail> orderDetails { get; set; } 
         public Product() { }
 
         public Product(string name,
@@ -39,7 +42,8 @@ namespace CraftIQ.Domain.Entites
                        float height,
                        decimal taxCost,
                        decimal profitPerUnit,
-                       decimal productionCost)
+                       decimal productionCost
+                      )
         {
             ProductId = Guid.NewGuid();
             Name = name;
