@@ -9,7 +9,7 @@ using System.Text;
 
 namespace CraftIQ_Project.Application.Features.Products.Command.UpdateProduct
 {
-    public class UpdateProductHandler : IRequestHandler<UpdateProductCommand,Product>
+    public class UpdateProductHandler : IRequestHandler<UpdateProductCommand>
     {
         private readonly IRepository<Product> repository;
 
@@ -17,10 +17,11 @@ namespace CraftIQ_Project.Application.Features.Products.Command.UpdateProduct
         {
             this.repository = repository;
         }
-        public async Task<Product> Handle(UpdateProductCommand request, CancellationToken cancellationToken)
+       
+        async Task IRequestHandler<UpdateProductCommand>.Handle(UpdateProductCommand request, CancellationToken cancellationToken)
         {
             var spec = new ProductByIdSpecification(request.ProductId);
-            var product = await repository.FirstOrDefaultAsync(spec);
+            var product =await repository.FirstOrDefaultAsync(spec);
             if (product == null)
             {
                 throw new Exception("Product not found");
@@ -39,7 +40,6 @@ namespace CraftIQ_Project.Application.Features.Products.Command.UpdateProduct
                 request.ModifiedBy);
             await repository.UpdateAsync(product);
             await repository.SaveChangesAsync();
-            return product;
 
         }
     }

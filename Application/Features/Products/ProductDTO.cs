@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace CraftIQ.Application.Features.Products.Query
+namespace CraftIQ_Project.Application.Features.Products
 {
     public class ProductDTO
     {

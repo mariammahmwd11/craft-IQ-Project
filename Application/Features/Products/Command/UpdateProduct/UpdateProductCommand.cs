@@ -5,7 +5,7 @@ using System.Text;
 
 namespace CraftIQ.Application.Features.Products.Command.UpdateProduct
 {
-    public class UpdateProductCommand:IRequest<CraftIQ.Domain.Entites.Product>
+    public class UpdateProductCommand:IRequest
     {
         public Guid ProductId { get; set; }
         public string Name { get; set; }

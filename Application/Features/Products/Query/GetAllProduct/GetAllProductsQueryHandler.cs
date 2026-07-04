@@ -1,6 +1,6 @@
 ﻿using Application.Interfaces;
-using CraftIQ.Application.Features.Products.Query;
 using CraftIQ.Application.Features.Products.Specification;
+using CraftIQ_Project.Application.Features.Products;
 using MediatR;
 using System;
 using System.Collections.Generic;

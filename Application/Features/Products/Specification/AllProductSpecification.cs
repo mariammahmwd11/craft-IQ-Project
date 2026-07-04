@@ -5,7 +5,7 @@ using System.Text;
 
 namespace CraftIQ.Application.Features.Products.Specification
 {
-    public class AllProductSpecification:SingleResultSpecification<CraftIQ.Domain.Entites.Product>
+    public class AllProductSpecification:Specification<CraftIQ.Domain.Entites.Product>
     {
         public AllProductSpecification()
         {
