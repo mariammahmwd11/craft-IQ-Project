@@ -21,7 +21,7 @@ namespace CraftIQ.Application.Features.Products.Command.DeleteProduct
         public async Task Handle(DeleteProductCommand request, CancellationToken cancellationToken)
         {
             var spec = new ProductByIdSpecification(request.ProductId);
-            var product =await repository.FirstOrDefaultAsync(spec);
+            var product =await repository.FirstOrDefaultAsync(spec, cancellationToken);
             if (product == null)
             {
                 throw new Exception("Product not found");

@@ -16,7 +16,7 @@ public class UpdateOrderHandler : IRequestHandler<UpdateOrderCommand>
     public async Task Handle(UpdateOrderCommand request, CancellationToken cancellationToken)
     {
         var spec = new OrderByIdSpecification(request.OrderId);
-        var order =await repository.FirstOrDefaultAsync(spec);
+        var order =await repository.FirstOrDefaultAsync(spec,cancellationToken);
        if(order == null)
         {
             throw new Exception("Order not found");
@@ -30,6 +30,7 @@ public class UpdateOrderHandler : IRequestHandler<UpdateOrderCommand>
             request.OrderType
             , request.ModifiedBy);
 
+        await repository.UpdateAsync(order);
 
     }
 }

@@ -21,7 +21,7 @@ namespace CraftIQ_Project.Application.Features.Products.Command.UpdateProduct
         async Task IRequestHandler<UpdateProductCommand>.Handle(UpdateProductCommand request, CancellationToken cancellationToken)
         {
             var spec = new ProductByIdSpecification(request.ProductId);
-            var product =await repository.FirstOrDefaultAsync(spec);
+            var product =await repository.FirstOrDefaultAsync(spec, cancellationToken);
             if (product == null)
             {
                 throw new Exception("Product not found");
@@ -39,8 +39,7 @@ namespace CraftIQ_Project.Application.Features.Products.Command.UpdateProduct
                 request.ProductionCost,
                 request.ModifiedBy);
             await repository.UpdateAsync(product);
-            await repository.SaveChangesAsync();
-
+           
         }
     }
 }

@@ -18,7 +18,7 @@ public class DeleteOrderHandler : IRequestHandler<DeleteOrderCommand>
     async Task IRequestHandler<DeleteOrderCommand>.Handle(DeleteOrderCommand request, CancellationToken cancellationToken)
     {
         var spec=new OrderByIdSpecification(request.Id);
-        var order =await repository.FirstOrDefaultAsync(spec);
+        var order =await repository.FirstOrDefaultAsync(spec, cancellationToken);
        await repository.DeleteAsync(order);
         await repository.SaveChangesAsync();
     }
